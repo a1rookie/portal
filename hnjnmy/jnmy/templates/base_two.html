@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_css %}
+    <link href="{% static 'css/me5.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block custom_js %}
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block custom_picture %}
+    <div class="main_pic">
+        <img src="http://www.dsgd.co/Upload/ad/index03-16134122053.jpg" alt="资讯中心" />
+    </div>
+{% endblock %}
+{% block custom_zhong %}
+    <div class="zy_toolbar_div">
+        <div class="main_c">
+            <div class="owl-carousel zy_toolbar">
+                {% for nodelist in classlists %}
+                    {% if nodelist.parent_category_id == 7 %}
+                <a href="{% url 'index' %}{{ nodelist.slug }}/{{ nodelist.id }}">{{ nodelist.name }}<div class="line01"></div></a>
+                    {% endif %}
+                {% endfor %}
+                <a href="#"></a></div>
+        </div>
+        <link rel="stylesheet" href="{% static 'owl/owl.carousel.css' %}">
+        <script src="{% static 'owl/owl.carousel.js' %}"></script>
+        <script>
+            $(document).ready(function($) {
+                $('.zy_toolbar').owlCarousel({
+                    items: 8,
+                    loop: false,
+                    margin: 0,
+                    lazyLoad: true,
+                    merge: true,
+                    video: true,
+                    responsive:{
+                        320:{
+                            items:4
+                        },
+                        375:{
+                            items:4
+                        },
+                        480:{
+                            items:4
+                        },
+                        768:{
+                            items:4
+                        },
+                        1024:{
+                            items:7
+                        },
+                        1200:{
+                            items:7
+                        },
+                        1400:{
+                            items:7
+                        }
+                    }
+                });
+            });
+        </script>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+{% block custom_body %}{% endblock %}

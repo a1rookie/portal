@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_body %}
+    <div class="main_c">
+            <div class="a_link">
+				<a href="" class="secon_108">基地展示</a>
+				<div class="clear"></div>
+			</div>
+			<div class="show-zs02">
+				<div class="demo">
+					<ul id="imageGallery" class="gallery list-unstyled">
+						<li data-thumb="{% static 'img/基地展示1.jpg' %}">
+							<a href="javascript:void(0)"><img src="{% static 'img/基地展示1.jpg' %}" />
+								<div class="pic_intr">基地展示</div>
+							</a>
+						</li>
+						<li data-thumb="{% static 'img/基地展示2.jpg' %}">
+							<a href="javascript:void(0)"><img src="{% static 'img/基地展示2.jpg' %}" />
+								<div class="pic_intr">基地展示</div>
+							</a>
+						</li>
+						<li data-thumb="{% static 'img/基地展示3.jpg' %}">
+							<a href="javascript:void(0)"><img src="{% static 'img/基地展示3.jpg' %}" />
+								<div class="pic_intr">基地展示</div>
+							</a>
+						</li>
+						<li data-thumb="{% static 'img/基地展示4.jpg' %}">
+							<a href="javascript:void(0)"><img src="{% static 'img/基地展示4.jpg' %}" />
+								<div class="pic_intr">基地展示</div>
+							</a>
+						</li>
+                        <li data-thumb="{% static 'img/基地展示5.jpg' %}">
+							<a href="javascript:void(0)"><img src="{% static 'img/基地展示5.jpg' %}" />
+								<div class="pic_intr">基地展示</div>
+							</a>
+						</li>
+                        <li data-thumb="{% static 'img/基地展示6.jpg' %}">
+							<a href="javascript:void(0)"><img src="{% static 'img/基地展示6.jpg' %}" />
+								<div class="pic_intr">基地展示</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<link rel="stylesheet" href="{% static 'css/lightslider.css' %}" />
+				<script src="{% static 'js/lightSlider.js' %}"></script>
+				<script type="text/javascript">
+					var site = $('#site');
+											      $(document).ready(function() {
+											          window.prettyPrint && prettyPrint();
+											          $("#imageGallery").lightSlider({
+											              item:1,
+											              thumbItem:5,
+											              gallery:true,
+											              minSlide:1,
+											              maxSlide:1,
+											              currentPagerPosition:'left'  ,
+											              controls: true,  //左右控制箭头
+											          });
+											      });
+
+				</script>
+
+			</div>
+
+		</div>
+
+
+<script>
+var $G_CateId='13';
+var $G_ChirId='108';
+$('.sel_'+$G_CateId).addClass('active');
+$('.secon_'+$G_ChirId).addClass('active');
+</script>
+{% endblock %}

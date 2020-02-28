@@ -1,0 +1,66 @@
+html,body {
+	margin: 0 !important;
+	padding: 0 !important;	
+	font-size: 14px;
+}
+
+#aa{
+	color: #00b9fb;
+}
+	.collapse {
+	height: 30px;
+	width: 850px;
+	z-index: 9999;
+	position: relative;
+		text-align: center;
+		float: right;
+}
+
+ul {
+	position: absolute;
+	z-index: 100;
+	padding:0;
+
+}
+
+ul li {
+	list-style-type: none;
+}
+ul li a {
+	text-decoration: none;
+	display: block;
+	width: 135px;
+	line-height: 30px;
+	text-align: center;
+}
+ul li ul li {
+	width:135px;
+	line-height:35px;
+	text-align: center;
+}
+ ul li ul {
+	display: none;
+}
+ul li:hover ul {
+	display: block;
+}
+ li:hover a, li:hover {
+	color: #00b9fb;
+	background-color: white;
+}
+ ul li #a1:hover{
+	 color: #00b9fb;
+ }
+
+/*一级标题鼠标放上去二级标题规定样式*/
+ul li:hover li, ul li:hover li a {
+	color: black;
+	background-color:white;
+}
+
+/*二级标题鼠标放上去效果*/
+ ul li ul li:hover a, ul li ul li:hover {
+	color: white;
+	background-color: #00b9fb;
+	 opacity:0.8;
+}

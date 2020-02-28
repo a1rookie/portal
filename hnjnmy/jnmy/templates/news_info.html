@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_picture %}
+{% endblock %}
+{% block custom_zhong %}
+
+{% load static %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+       		<meta name="sogou_site_verification" content="pTpsj90vJk"/>
+        	<meta name="360-site-verification" content="4560fea82517d8132f31cde0e489d814" />
+		<title>新闻详情</title>
+		<link href="{% static 'plugin/bootstrap/bootstrap.min.css' %}" rel="stylesheet" />
+		<link href="{% static 'css/news_info.css' %}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<!--header-->
+		<div class="header">
+			<div class="container">
+				<div class="row">
+					<h3>{{ content.title}}</h3>
+					<p class="date">发布时间：{{ content.time|date:"Y-m-d" }}</p>
+				</div>
+			</div>
+		</div>
+		<!--//header-->
+		<!--content-->
+		<div class="content">
+			<div class="container">
+				<!--正文-->
+				<div class="article">
+					{{ content.content|safe }}
+				</div>
+				<!--//正文-->
+				<!--页脚-->
+				<div class="footer">
+					<div class="row">
+						<div class="col-md-9 col-sm-9">
+							{% if pre_new is not None %}
+								<p>上一篇: <a href="{% url 'show' pre_new.id %}">{{ pre_new.title }}</a></p>
+							{% endif %}
+							{% if next_new is not None %}
+								<p>下一篇: <a href="{% url 'show' next_new.id %}">{{ next_new.title }}</a></p>
+							{% endif %}
+						</div>
+						<div class="col-md-3 col-sm-3">
+							<a onclick="history.go(-1);">返回</a>
+						</div>
+					</div>
+				</div>
+				<!--//页脚-->
+			</div>
+			
+		</div>
+		<!--//content-->
+		<script src="{% static 'plugin/jquery/jquery.min.js' %}"></script>
+		<script src="{% static 'plugin/bootstrap/bootstrap.min.js' %}"></script>
+{% endblock %}

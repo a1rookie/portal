@@ -1,0 +1,395 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_picture %}
+{% endblock %}
+{% block custom_zhong %}
+{% endblock %}
+{% block custom_body %}
+        <link rel="stylesheet" href="{% static 'flexslider/flexslider.css' %}" />
+		<script type="text/javascript" src="{% static 'flexslider/jquery.flexslider.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+        <script type="text/javascript" src="{% static 'js/wow.min.js' %}" ></script>
+		<div class="flexslider">
+			<ul class="slides">
+                {% for banners_image in banners_images %}
+				<li>
+					<a href="{% url 'index' %}" target="_blank">
+						<img src="{{ MEDIA_URL }}{{ banners_image.image }}" alt="" />
+					</a>
+				</li>
+                {% endfor %}
+			</ul>
+		</div>
+		<script>
+			$(function() {
+				$('.flexslider').flexslider({
+					animation: "slide",
+					slideshow: true,
+					animationLoop: true,
+					slideshowSpeed: 5000,
+					controlNav: true,
+					directionNav: true,
+					start: function(slider) {
+						$('body').removeClass('loading');
+					}
+				});
+			})
+		</script>
+		<div class="news_block">
+			<div class="main_c">
+				<div class="head">
+					<p class="p01 disloc">资讯中心</p>
+					<p class="p02 disloc">NEWS CENTER</p>
+				</div>
+				<div class="index_news_block wow fadeInUp">
+					<div class="index_news_left">
+						<div class="index_news_pic">
+							<img src="{{ MEDIA_URL }}{{ first.image }}">
+							<div class="index_news_pic_in">
+							<img src="{{ MEDIA_URL }}{{ first.image }}">
+
+							</div>
+						</div>
+						<dl class="index_news_dl">
+					      <dt>
+						    <p class="p01">{{ first.title }}</p>
+						    <p class="p02">{{ first.time|date:"Y-m-d" }}</p>
+					      </dt>
+						  <dd>{{ first.content|striptags|safe|truncatechars:100 }}…</dd>
+                            <a href="{% url 'show' first.id %}"  ><font color="#00bfff" >查看详情</font></a>
+						</dl>
+					</div>
+					<ul class="index_news_right">
+<input type="hidden" value="350" />
+						{% for news in other %}
+                                    <li>
+									<a href="{% url 'show' news.id %}">
+										<span class="riqi">{{ news.time|date:"Y-m-d" }}</span>
+										<span>{{ news.title }}</span>
+									</a>
+								</li>
+                                {% endfor %}
+					</ul>
+					<div class="clear"></div>
+					<a href="{% url 'news' %}" class="learn_more">MORE</a>
+				</div>
+			</div>
+		</div>
+		<div class="index_block03 wow fadeInUp">
+			<div class="main_c">
+
+				<div class="owl-carousel">
+					<div class="dummy-wrapper">
+						<div class="article nestedItem">
+							<a href="{% url 'index' %}">
+								<div class="picbox">
+									<img src="{% static 'img/pic03.jpg' %}" />
+									<div class="picbox_in">
+										<img src="{% static 'img/pic03.jpg' %}" />
+										<div class="light">
+											<i></i>
+										</div>
+									</div>
+								</div>
+								<div class="pic_tex">
+									<p class="p01">走进金农</p>
+									<p class="p02">合耕力，取精华，利益众食</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="dummy-wrapper">
+						<div class="article nestedItem">
+							<a href="{% url 'zhanshi' %}">
+								<div class="picbox">
+									<img src="{% static 'img/zltx-11003314321.jpg' %}" />
+									<div class="picbox_in">
+										<img src="{% static 'img/zltx-11003314321.jpg' %}" />
+										<div class="light">
+											<i></i>
+										</div>
+									</div>
+								</div>
+								<div class="pic_tex">
+									<p class="p01">基地展示</p>
+									<p class="p02">基地展示、打造现代化基地</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="dummy-wrapper">
+						<div class="article nestedItem">
+							<a href="introduce/6">
+								<div class="picbox">
+									<img src="{% static 'img/ppcp-11010086468.jpg' %}" />
+									<div class="picbox_in">
+										<img src="{% static 'img/ppcp-11010086468.jpg' %}" />
+										<div class="light">
+											<i></i>
+										</div>
+									</div>
+								</div>
+								<div class="pic_tex">
+									<p class="p01">品牌产品</p>
+									<p class="p02">立足食品安全和健康农业</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="dummy-wrapper">
+						<div class="article nestedItem">
+                            <a href="introduce/15">
+								<div class="picbox">
+									<img src="{% static 'img/sszr-11012691134.jpg' %}" />
+									<div class="picbox_in">
+										<img src="{% static 'img/sszr-11012691134.jpg' %}" />
+										<div class="light">
+											<i></i>
+										</div>
+									</div>
+								</div>
+								<div class="pic_tex">
+									<p class="p01">社会责任</p>
+									<p class="p02">奉献大众，回报社会</p>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="index_block04">
+			<div class="main_c">
+				<div class="head">
+					<p class="p01 disloc">视频展示</p>
+					<p class="p02 disloc">Video display</p>
+				</div>
+				<!--修改轮播-->
+				<link rel="stylesheet" href="{% static 'owl/owl.carousel.css' %}" />
+				<link rel="stylesheet" href="{% static 'owl/owl.theme.css' %}" />
+				<script type="text/javascript" src="{% static 'owl/owl.carousel.js' %}"></script>
+
+				<div class="scroll_div disloc">
+					<div class="owl-carousel"></div>
+					<script>
+						jQuery(document).ready(function($) {
+
+							$('.owl-carousel').owlCarousel({
+								items:1,
+								loop:false,
+								nav:true,
+								nestedItemSelector: 'nestedItem',
+								margin:16,
+								responsive:{
+									320:{
+										items:2
+									},
+									375:{
+										items:2
+									},
+									480:{
+										items:2
+									},
+
+									678:{
+										items:4
+									},
+								}
+							});
+						});
+					</script>
+
+					<!--修改轮播-->
+				</div>
+				<div class="video-box_bg"><div class="big-video-clo"></div></div>
+				<a href="javascript:;" class="video_div wow fadeInUp">
+					<img src="{% static 'img/one.jpg' %}" />
+					<div class="video_center">
+                        <i>
+							<img src="{% static 'img/play.png' %}" />
+						</i>
+						<p>VIDEO</p>
+					</div >
+				</a>
+				<div class="video-box">
+				<video width="100%" height="auto" controls>
+					<source src="{{ MEDIA_URL }}{{ video.video }}" type="video/mp4"></source>
+				</video>
+				</div>
+			</div>
+		</div>
+<script type="text/javascript">
+$('.mymenu li').eq(0).find('a').addClass('active');
+</script>
+        <script src="{% static 'masonry/imagesloaded.pkgd.min.js' %}"></script>
+		<script src="{% static 'masonry/masonry.pkgd.min.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'css/open.css' %}" />
+		<script>
+			(function($) {
+				// carousel js
+				$.fn.extend({
+					Carousel: function(opt) {
+						var btn_left = $(opt.btn_left),
+							btn_right = $(opt.btn_right),
+							$item_img = $('.carousel-img-list > a'),
+							$item_list = $('.carousel-list > li'),
+							$item_txt = $('.carousel-txt-list > li'),
+							index = 0,
+							timerID,
+							timer = opt.timer ? parseInt(opt.timer) : 3000,
+							speed = opt.speed ? parseInt(opt.speed) : 1;
+						var len = $item_list.length;
+						$item_img.eq(0).show();
+						$item_list.eq(0).addClass('cur');
+						$item_txt.eq(0).show();
+						var goCarousel = function() {
+							$item_img.eq(index).fadeIn()
+								.siblings().hide();
+							$item_txt.eq(index).fadeIn()
+								.siblings().hide();
+							$item_list.eq(index).addClass('cur')
+								.siblings().removeClass('cur');
+						}
+						var carouselLeft = function() {
+							index -= 1;
+							if (index < 0) {
+								index = len - 1;
+							}
+							goCarousel();
+						}
+						var carouselRight = function() {
+							index += 1;
+							if (index >= len) {
+								index = 0;
+							}
+							goCarousel();
+						}
+						var autoPlay = function() {
+							timerID = setInterval(carouselRight, timer);
+						}
+						var autoStop = function() {
+							clearInterval(timerID);
+						}
+						$item_list.mouseover(function() {
+							index = $(this).index() + 1;
+							goCarousel();
+						})
+						$('.carousel-show').hover(function() {
+							// body...
+							btn_left.toggle();
+							btn_right.toggle();
+						})
+						this.hover(autoStop, autoPlay).mouseout();
+						btn_left.click(carouselLeft);
+						btn_right.click(carouselRight);
+					}
+				})
+			})(jQuery);
+			$(function() {
+				// body...
+				//Call the carousel
+				$(".carousel").Carousel({
+					speed: 1,
+					timer: 5000,
+					btn_left: '.carousel-btn-left',
+					btn_right: '.carousel-btn-right',
+				})
+				var _cH;
+
+				function carH() {
+					//if($(window).width()>720){
+					_cH = $('.carousel-show').width() * 435 / 770;
+					$('.carousel-show').css({
+							height: _cH + 'px'
+						})
+						//}
+				}
+				$(window).resize(function() {
+					carH();
+				})
+				carH();
+				$('.news-sec2-cont').find('.tabs').eq(0).show();
+				//Call the Masonry
+				var masonryOptions = {
+					itemSelector: 'li',
+					columnWidth: 0
+				};
+				// $('.grid').masonry({
+				//   // set itemSelector so .grid-sizer is not used in layout
+				//   itemSelector: 'li',
+				//   transitionDuration : 0
+				// })
+				var $grid = $('.grid').masonry(masonryOptions)
+				$('.hp08showlist').on('click', function() {
+					$('.news-sec2').addClass('hp08lvw').removeClass('hp08imgitems');
+					$grid.masonry('destroy');
+				})
+				$('.hp08showimgs').on('click', function() {
+					$('.news-sec2').addClass('hp08imgitems').removeClass('hp08lvw');
+					$grid.masonry(masonryOptions);
+				})
+				// Tab
+				var idx_tab;
+				$('.news-sec2-hd-list ul li').on('click', function() {
+					idx_tab = $(this).index();
+					$(this).addClass('selected').siblings().removeClass('selected');
+					$('.news-sec2-cont').find('.tabs').eq(idx_tab).fadeIn("fast").siblings().hide();
+					$grid.masonry(masonryOptions);
+				})
+				$('.news-sec2-hd-selected').on('click', function() {
+					// body...
+					$('.news-sec2-hd-list').slideToggle();
+				})
+				$('.news-sec2-hd-list li').on('click', function() {
+					if ($(window).width() < 720) {
+						$('.news-sec2-hd-selected a').text($(this).find('a').text());
+						$('.news-sec2-hd-list').slideUp();
+					}
+				})
+				var which_tab;
+				//frame open
+				function gotoPro() {
+					// jQuery(".float").after($('.frame'));
+					$(".frame").show().addClass("show-news-cont");
+					$(".span_top").css("left", "0");
+					$(".zhezhao").addClass("ani");
+					setTimeout(function() {
+						jQuery('.frame').addClass("frameHtmlact");
+					}, 100);
+					jQuery("html").addClass("open");
+				};
+				//frame close
+				jQuery(document).on('click', ".frame", function(e) {
+					if (!$(e.target).hasClass('frame')) {
+						return false;
+					} else {
+						jQuery('html').removeClass('open');
+						jQuery('.frame').removeClass('frameHtmlact').removeClass("show-news-cont");
+						setTimeout(function() {
+							jQuery('.frame').hide();
+						}, 400);
+					}
+				});
+				jQuery(document).on('click', ".frame-close", function(e) {
+					jQuery('html').removeClass('open');
+					$(".span_top").css("left", "-80px");
+					$(".zhezhao").removeClass("ani");
+					jQuery('.frame').removeClass('frameHtmlact').removeClass("show-news-cont");
+					setTimeout(function() {
+						jQuery('.frame').hide();
+					}, 400);
+				});
+				jQuery('.news-items').bind('click', function(e) {
+					e.preventDefault();
+					//$('.frame-cont').hide();  这里我修改了
+					var $this = jQuery(this);
+					gotoPro();
+				});
+				$('.frame').hide();
+			})
+		</script>
+<script>
+		</script>
+{% endblock %}

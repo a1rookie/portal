@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+        <meta name="sogou_site_verification" content="pTpsj90vJk"/>
+        <meta name="360-site-verification" content="4560fea82517d8132f31cde0e489d814" />
+<title></title>
+		<link rel="stylesheet" href="{% static 'css/layout.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/css.css' %}" />
+        {% block custom_css %}{% endblock %}
+		<script type="text/javascript" src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/myjs.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.easing.js' %}" ></script>
+        <script src="{% static 'js/common.js' %}" type="text/javascript"></script>
+        {% block custom_js %}{% endblock %}
+</head>
+
+	<body>
+		<div class="main_b">
+			<div class="top">
+				<a href="{% static 'img/logo.png' %}" class="logo" style="background:#FFFFFF url({% static 'img/logo.png' %}) no-repeat left center;"></a>
+				<div class="other_div">
+					<div class="search_div">
+					<form action="search.aspx" method="get">
+						<input type="button" class="search_btn" value="搜索" />
+						<input type="text" class="inp_tex" placeholder="请输入关键字" name="keyword"/>
+					</form>
+					</div>
+					<div class="lang_div">
+						<p>中文版</p>
+						<div class="drop_down">
+							<a>English</a>
+							<a href="">中文</a>
+						</div>
+						<i></i>
+					</div>
+					<div class="icon_box">
+						<a href="">
+							<img src="{% static 'img/email.png' %}" />
+						</a>
+					</div>
+				</div>
+				<ul class="mymenu">
+			     {% for classlist in classlists %}
+                        {% if classlist.parent_category_id %}
+                        {% else %}
+                            <li>
+                            {% if classlist.id == 0 or classlist.id == 7 %}
+                                <a href="{% url 'index' %}{{ classlist.slug }}">{{ classlist.name }}</a>
+                            {% else %}
+                                <a href="{% url 'index' %}{{ classlist.slug }}/{{ classlist.id }}">{{ classlist.name }}</a>
+                            {% endif %}
+                                <div class="nav_er">
+                                    {% for nodelist in classlists %}
+                                        {% if nodelist.parent_category_id == classlist.id %}
+                                                {% if nodelist.id == 5 %}
+                                                    <a href="{% url 'index' %}{{ nodelist.slug }}">{{ nodelist.name }}</a>
+                                                {% endif %}
+                                                {% if nodelist.id != 5 %}
+                                                    <a href="{% url 'index' %}{{ nodelist.slug }}/{{ nodelist.id }}">{{ nodelist.name }}</a>
+                                                {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+			<li>                           
+				<a href="http://www.lixiaojxc.com">销售管理平台入口</a>                       
+    				<div class="nav_er"></div>
+			</li>	
+					<div class="clear"></div>
+<div class="lang_ph"><a href="">中文</a> | <a href="">English</a> | <a href="">
+							<img src="{% static 'img/email.png' %}" />
+						</a>
+</div>
+				</ul>
+				<form action="search.aspx" method="get">
+				<input type="button" href="#" class="ph_search" />
+				<input type="button" href="#" class="ph_nav" />
+				<input type="text" value="" class="search_inp" placeholder="请输入关键字" name="keyword"/>
+				</form>
+			</div>
+		</div>
+        {% block custom_picture %}
+		<div class="main_pic">
+			<img src="{% static 'img/zhuzhi.jpg' %}" alt="走进金农" />
+		</div>
+        {% endblock %}
+        {% block custom_zhong %}
+		<div class="zy_toolbar_div">
+			<div class="main_c">
+				<div class="owl-carousel zy_toolbar">
+                    {% for nodelist in classlists %}
+                        {% if nodelist.parent_category_id == 1 %}
+                            {% if nodelist.id == 5 %}
+                                <a href="{% url 'index' %}{{ nodelist.slug }}">{{ nodelist.name }}<div class="line01"></div></a>
+                            {% endif %}
+                            {% if nodelist.id != 5 %}
+                                <a href="{% url 'index' %}{{ nodelist.slug }}/{{ nodelist.id }}">{{ nodelist.name }}<div class="line01"></div></a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+					<a href="#"></a></div>
+				</div>
+				<link rel="stylesheet" href="{% static 'owl/owl.carousel.css' %}">
+				<script src="{% static 'owl/owl.carousel.js' %}"></script>
+				<script>
+					$(document).ready(function($) {
+						$('.zy_toolbar').owlCarousel({
+							items: 4,
+							loop: false,
+							margin: 0,
+							lazyLoad: true,
+							merge: true,
+							video: true,
+								responsive:{
+			320:{
+				items:4
+			},
+			375:{
+				items:4
+			},
+			480:{
+				items:4
+			},
+
+			768:{
+				items:4
+			},
+			1024:{
+				items:7
+			},
+			1200:{
+				items:7
+			},
+			1400:{
+				items:7
+			}
+
+
+		}
+						});
+
+					});
+
+
+				</script>
+				<div class="clear"></div>
+			</div>
+        {% endblock %}
+{% block custom_body %}{% endblock %}
+    <div class="foot">
+			<div class="main_c">
+				<span class="foot_a">
+					<a href="{% url 'index' %}introduce/18">联系我们</a> | <a href="{% url 'index' %}introduce/16">法律声明</a> | <a href="{% url 'index' %}introduce/18">宾客留言</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</span>
+                <span class="foot_b">
+                    豫ICP备18022110号
+                    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41130302000297">
+                        <img src="{% static 'img/备案图标.png' %}"/>
+                        豫公网安备 41130302000297号
+                    </a>
+                </span>
+                <span class="foot_tex fr"><a href="{% url 'index' %}">Copyright © 河南金农草业发展有限公司</a></span>
+			</div>
+		</div>
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?3f961c26abff7134f505c435a14a4eae";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+</body>
+</html>

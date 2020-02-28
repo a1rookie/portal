@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_zhong %}
+    <div class="zy_toolbar_div">
+			<div class="main_c">
+
+				<div class="owl-carousel zy_toolbar">
+                    {% for nodelist in classlists %}
+                        {% if nodelist.parent_category_id == 9 %}
+                    <a href="{% url 'index' %}{{ nodelist.slug }}/{{ nodelist.id }}">{{ nodelist.name }}<div class="line01"></div></a>
+                        {% endif %}
+                    {% endfor %}
+					<a href="#"></a></div>
+				</div>
+				<link rel="stylesheet" href="{% static 'owl/owl.carousel.css' %}">
+				<script src="{% static 'owl/owl.carousel.js' %}"></script>
+				<script>
+					$(document).ready(function($) {
+						$('.zy_toolbar').owlCarousel({
+							items: 4,
+							loop: false,
+							margin: 0,
+							lazyLoad: true,
+							merge: true,
+							video: true,
+								responsive:{
+			320:{
+				items:4
+			},
+			375:{
+				items:4
+			},
+			480:{
+				items:4
+			},
+
+		}
+						});
+
+					});
+
+				</script>
+				<div class="clear"></div>
+			</div>
+{% endblock %}
+{% block custom_body %}
+<div class="main_c">
+			<p>{{ content.content|safe }}</p>
+		</div>
+<script>
+var $G_CateId='16';
+$('.sel_'+$G_CateId).addClass('active');
+</script>
+{% endblock %}

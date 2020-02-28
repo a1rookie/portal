@@ -1,0 +1,75 @@
+{% extends 'base_two.html' %}
+{% load static %}
+{% block custom_body %}
+    <div class="news_block">
+        <div class="main_c">
+            <div class="news_right">
+                <p class="p01">
+                    信息检索
+                </p>
+                <form action="news_info.html" method="get">
+                    <input type="text" class="inp_search" name="keyword" placeholder="输入标题关键" />
+                    <input type="hidden" name="CateId" value="32"/>
+                    <input type="submit" class="search_btn02" value="搜索" />
+                </form>
+            </div>
+				<div class="news_left news_box1">
+					<div class="news_itembox">
+						<a href="{% url 'show' news.object_list.0.id %}" class="news-items">
+							<div class="picbox_b">
+                                {%  if news.object_list.0.image %}
+                                    <img src="{{ MEDIA_URL }}{{ news.object_list.0.image}}">
+                                {% else %}
+								<img src="{% static 'img/基地展示6.jpg' %}" />
+                                {% endif %}
+							</div>
+							<dl class="picbox_b_dl">
+                                <dt>
+							<p class="p01">{{ news.object_list.0.title }}</p>
+							<p class="p02">{{ news.object_list.0.time }}</p>
+                                </dt>
+								<dd>{{ news.object_list.0.content|striptags|safe|truncatechars:100 }}</dd>
+							</dl>
+							<div class="clear"></div>
+						</a>
+					</div>
+					<ul class="news_ul">
+                    {% for new  in news.object_list%}
+                        <li><a href="{% url 'show' new.id %}" class="news-items"><span class="tex01">{{ new.title }}<span class="tex02">{{ new.time }}</span></span></a></li>
+                    {% endfor %}
+<span id='DcmsPage_PageInfo' style='display:none;'>10|156</span>
+					</ul>
+<style>
+<!--
+#dcms_pager .pages {border:none;text-transform:uppercase;font-size:12px;margin:20px 0 20px 0;padding:0;height:20px;clear:both;text-align:center;}
+#dcms_pager .pages a {border:1px solid #ddd; color:#666;text-decoration:none;margin:0 5px 0 0;padding:0 3px 0 3px;font-size:12px;height:16px;line-height:16px;}
+#dcms_pager .pages a:hover {border:1px solid #ccc; color:#000;}
+#dcms_pager .pages .pgempty {border:1px solid #ddd;color:#666;}
+#dcms_pager .pages .pgcurrent {border:1px solid #ccc;color:#000;}
+-->
+</style>
+                <div class="center">
+                <ul class="pagination pagination-lg">
+                          {% if news.has_previous %}
+                                <li class="page-item"><a href="?{{ news.previous_page_number.querystring }}" class="page-link">上一页</a></li>
+                            {% endif %}
+                            {% for page in news.pages %}
+                                {% if page %}
+                                    {% ifequal page news.number %}
+                                        <li class="page-item active"><a href="?{{ page.querystring }}" class="page-link">{{ page }}</a></li>
+                                    {% else %}
+                                        <li class="page-item "><a href="?{{ page.querystring }}" class="page-link">{{ page }}</a></li>
+                                    {% endifequal %}
+                                {% else %}
+                                    <li class="page-item"><a href="" class="page-link">...</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if news.has_next %}
+                                <li class="page-item"><a href="?{{ news.next_page_number.querystring }}" class="page-link">下一页</a></li>
+                            {% endif %}
+                        </ul>
+            </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+/*
+ * 	Default theme - Owl Carousel CSS File
+ *	v2.0.0
+ */
+
+.owl-theme .owl-controls{
+	margin-top: 10px;
+	text-align: center;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Styling Next and Prev buttons */
+.owl-theme .owl-controls .owl-nav div{
+	color: #FFF;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	height: 40px;width: 15px;
+	font-size: 12px;
+	text-indent: 100px;
+	top: 50%;
+	margin-top: -30px;
+	cursor: pointer;
+	overflow: hidden;
+}
+.owl-theme .owl-controls .owl-nav .owl-prev{
+	background: url(../img/icon_prev03.png) no-repeat center center;
+	left: 0;
+}
+.owl-theme .owl-controls .owl-nav .owl-prev:hover{
+	background: url(../img/icon_prev01.png) no-repeat center center;
+
+}
+.owl-theme .owl-controls .owl-nav .owl-next{
+	background: url(../img/icon_next03.png) no-repeat center center;
+	right: 0;
+}
+.owl-theme .owl-controls .owl-nav .owl-next:hover{
+	background: url(../img/icon_prev02.png) no-repeat center center;
+
+}
+.owl-theme .owl-controls .owl-nav .disabled{
+	opacity: 0.5;
+	cursor: default;
+}
+
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controls .owl-nav div:hover{
+	text-decoration: none;
+}
+
+/* Styling dots*/
+.owl-theme .owl-dots .owl-dot{
+	display: none;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+}
+
+.owl-theme .owl-dots .owl-dot span{
+	-webkit-backface-visibility: visible;
+	display: block;
+	width: 10px;
+	height: 10px;
+	margin: 5px 7px;
+	filter: Alpha(Opacity=50);/*IE7 fix*/
+	opacity: 0.5;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background: #869791;
+	transition-property: opacity;
+  	transition-duration: 200ms;
+  	transition-timing-function: ease;
+}
+
+.owl-theme .owl-dots .owl-dot.active span{
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+}
+
+.nestedItem{text-align: center;}

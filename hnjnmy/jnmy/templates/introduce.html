@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_body %}
+    <head>
+        <link href="/static/plugin/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="/static/css/news_info.css" rel="stylesheet" />
+	<link rel="stylesheet" href="{% static 'css/news_info.css' %}" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="article">
+                {{ content.content|safe }}
+            </div>
+        </div>
+    </body>
+{% endblock %}

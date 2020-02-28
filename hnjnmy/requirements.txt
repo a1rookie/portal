@@ -1,0 +1,7 @@
+beautifulsoup4
+Django
+lxml
+mysqlclient
+Pillow
+PyMySQL
+pytz
